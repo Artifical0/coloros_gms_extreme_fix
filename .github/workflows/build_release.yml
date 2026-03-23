@@ -1,13 +1,10 @@
-name: 自动构建并发布 Magisk 模块
+name: 自动构建刷机包
 
 on:
   push:
-    branches:
-      - main
-    paths-ignore:
-      - 'README.md'
-      - '.github/**'
-  workflow_dispatch: # 允许手动触发
+    branches: [ main ]
+    paths-ignore: [ 'README.md', '.github/**' ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -18,29 +15,21 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
 
-      - name: 获取模块版本号
-        id: get_version
+      - name: 打包模块
+        id: pack
         run: |
-          # 从 module.prop 中提取版本号用于命名
-          VERSION=$(grep 'version=' module.prop | cut -d= -f2)
-          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
-          echo "DATE=$(date +'%Y%m%d_%H%M')" >> $GITHUB_OUTPUT
+          ver=$(grep 'version=' module.prop | cut -d= -f2)
+          filename="coloros_gms_fix_$ver.zip"
+          zip -r "$filename" ./* -x ".git/*" ".github/*" "README.md" ".gitignore"
+          echo "zip_name=$filename" >> $GITHUB_OUTPUT
+          echo "tag=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_OUTPUT
 
-      - name: 压缩打包
-        run: |
-          # 排除掉不需要打包进模块的 Git 相关文件
-          # 压缩当前目录下所有内容到 zip
-          zip -r "coloros_gms_fix_${{ steps.get_version.outputs.VERSION }}.zip" ./* -x ".git/*" ".github/*" "upstream_temp/*" "README.md" ".gitignore"
-
-      - name: 创建 GitHub Release 并上传
+      - name: 创建 Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.get_version.outputs.VERSION }}_${{ steps.get_version.outputs.DATE }}
-          name: Release ${{ steps.get_version.outputs.VERSION }}
+          tag_name: ${{ steps.pack.outputs.tag }}
+          name: Build ${{ steps.pack.outputs.tag }}
           files: coloros_gms_fix_*.zip
-          body: |
-            自动构建的 Magisk 模块压缩包。
-            构建时间: ${{ steps.get_version.outputs.DATE }}
-            包含最新的 ColorOS 防火墙清理逻辑及 BPM 挂载。
+          body: "基于最新同步代码自动生成的 Magisk 模块。"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
