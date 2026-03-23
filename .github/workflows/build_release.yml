@@ -1,0 +1,46 @@
+name: 自动构建并发布 Magisk 模块
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+      - '.github/**'
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 获取模块版本号
+        id: get_version
+        run: |
+          # 从 module.prop 中提取版本号用于命名
+          VERSION=$(grep 'version=' module.prop | cut -d= -f2)
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "DATE=$(date +'%Y%m%d_%H%M')" >> $GITHUB_OUTPUT
+
+      - name: 压缩打包
+        run: |
+          # 排除掉不需要打包进模块的 Git 相关文件
+          # 压缩当前目录下所有内容到 zip
+          zip -r "coloros_gms_fix_${{ steps.get_version.outputs.VERSION }}.zip" ./* -x ".git/*" ".github/*" "upstream_temp/*" "README.md" ".gitignore"
+
+      - name: 创建 GitHub Release 并上传
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.get_version.outputs.VERSION }}_${{ steps.get_version.outputs.DATE }}
+          name: Release ${{ steps.get_version.outputs.VERSION }}
+          files: coloros_gms_fix_*.zip
+          body: |
+            自动构建的 Magisk 模块压缩包。
+            构建时间: ${{ steps.get_version.outputs.DATE }}
+            包含最新的 ColorOS 防火墙清理逻辑及 BPM 挂载。
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
