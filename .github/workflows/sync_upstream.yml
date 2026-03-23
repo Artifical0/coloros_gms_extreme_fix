@@ -1,0 +1,58 @@
+name: 全量同步上游更新
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # 北京时间上午 10 点运行
+  workflow_dispatch:      # 允许手动在网页点击运行
+
+jobs:
+  sync_and_patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出你的仓库
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 同步上游文件并重定向
+        run: |
+          # 1. 获取上游代码
+          git clone --depth 1 https://github.com/CHIZI-0618/ColorOS-Google-Firewall-Fixer.git upstream_temp
+          
+          # 2. 核心重定向：将上游 service.sh 提取为你的子脚本
+          if [ -f "upstream_temp/service.sh" ]; then
+            cp upstream_temp/service.sh ./firewall_fix.sh
+          fi
+          
+          # 3. 同步除核心文件外的所有内容 (包含 customize.sh)
+          # --exclude 后面的文件将永远以你仓库里的为准，不会被覆盖
+          rsync -av --exclude='.git/' \
+                    --exclude='.github/' \
+                    --exclude='service.sh' \
+                    --exclude='module.prop' \
+                    --exclude='data/' \
+                    --exclude='README.md' \
+                    upstream_temp/ ./
+          
+          # 4. 对同步过来的 customize.sh 进行动态补丁
+          # 追加一行权限指令，确保你的 data 文件夹在安装时获得正确权限
+          echo 'set_perm_recursive $MODPATH/data 0 0 0755 0755' >> customize.sh
+          
+          rm -rf upstream_temp
+
+      - name: 处理换行符 (强制 LF)
+        run: |
+          find . -name "*.sh" -exec sed -i 's/\r$//' {} +
+
+      - name: 提交并推送
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "自动同步上游更新: $(date +%Y-%m-%d)"
+            git push
+          else
+            echo "没有发现更新，跳过。"
+          fi
