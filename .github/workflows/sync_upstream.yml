@@ -38,10 +38,6 @@ jobs:
                     --exclude='README.md' \
                     upstream_temp/ ./
           
-          # 4. 对同步过来的 customize.sh 进行动态补丁
-          # 追加一行权限指令，确保你的 data 文件夹在安装时获得正确权限
-          echo 'set_perm_recursive $MODPATH/data 0 0 0755 0755' >> customize.sh
-          
           rm -rf upstream_temp
 
       - name: 处理换行符 (强制 LF)
