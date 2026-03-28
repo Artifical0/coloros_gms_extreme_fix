@@ -7,7 +7,7 @@
     <module-version>OFreezer3.0</module-version>
 
     <enableConfig hansEnable="true" gmsEnable="false" releaseStatistic="true" skipToast="true" heatGameCloseNet="false"
-                    dozeRestrictSwitch="true" audioByHook="true" navigationByHook="true" audioCheckEnable="true" proxyWakeLockEnable="true"
+                    dozeRestrictSwitch="false" audioByHook="true" navigationByHook="true" audioCheckEnable="true" proxyWakeLockEnable="false"
                     cgp_v2="true" hansWatchDogEnable="true" cpnCheckByHook="true" restoreAlarm="true" uidGoneRemoveAlarm="true"
                     MStateTrimMemConfig = "true"/>
     <lcdOffConfig ffTotal="6" ffInterval="10000" interval="60000" deepSleepFreezeWhite="true" gameCloseNet="false" idleEnable="true"
@@ -25,7 +25,7 @@
     <traceConfig enable="true"/>
     <ApiTimeoutConfig apiEnable="true" upperTimeout="7200000" floorTimeout="600000"/>
     <hansWatchDogConfig defaultTimeout="40000"/>
-    <nightDeepDozeConfig enable="true" deltaMinutes="20" timeRestrictEnable="true" startMinutes="0" endMinutes="360" />
+    <nightDeepDozeConfig enable="false" deltaMinutes="20" timeRestrictEnable="true" startMinutes="0" endMinutes="360" />
     <queryUsageStatsConfig queryIntervalTime="259200" messageDelayTime="3600" messageRepeateCount="5"/> <!--3days:259200-->
     <proxyDelayConfig delayTime="500" />
 
@@ -52,181 +52,671 @@
 
     <imPkg pkg="com.tencent.mm"/>
     <exemptFreezeImAppConfig>
+        <boot enable="true" duration="5"/>
+        <connectivityChange enable="true" duration="1"/>
         <boot               enable="true" duration="60"/>
         <connectivityChange enable="true" duration="5"/>
     </exemptFreezeImAppConfig>
+        <boot enable="true" duration="5"/>
+        <connectivityChange enable="true" duration="1"/>
 
     <!-- pkg list, name={pkgName}, category={forcewhite, oppo/oneplus white, third white}-->
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.coloros.soundrecorder" category="100"/>
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.hiby.music" category="100"/>
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.kugou.viper" category="100"/>
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.kiloo.subwaysurf" category="100"/>
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.oplus.cameradetection" category="100" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.coloros.alarmclock" category="100" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.google.android.apps.tycho" category="100" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.tmobile.pr.mytmobile" category="100"/>
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.vzw.hss.myverizon" category="100"/>
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.unionpay.tsmservice" category="100" />
 
     <!-- oppo white app-->
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.coloros.screenrecorder" category="010"/>
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.oplus.melody" category="010"/>
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.heytap.uwbconnect" category="010" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.oplus.onet" category="010" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.oplus.screenrecorder" category="010" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.coloros.oppopods" category="010" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.oplus.caseflash" category="010" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.edith.os" category="010" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.color.otaassistant" category="010" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.oplus.riderMode" category="010" />
 
 
     <!--realme app -->
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.realme.link" category="010"/>
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.realme.linkcn" category="010"/>
 
     <!--oneplus white app -->
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.oneplus.ctsprepare" category="010" />
 
     <!--third white app -->
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="cn.xuexi.android" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.kuaidi.daijia.driver" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.sdu.didi.gsui" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.ubercab.driver" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="cn.edaijia.android.driverclient" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.funcity.taxi.driver" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.newgame.padtool" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.sdu.didi.gui" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.sankuai.meituan.dispatch.homebrew" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.sankuai.meituan.meituanwaimaibusiness" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="me.ele.napos" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.samsung.android.app.watchmanager" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.xtc.watch" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.cxyw.suyun.ui" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.google.android.marvin.talkback" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.android.email" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.hp.android.printservice" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.hp.printercontrol" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="org.mopria.printplugin" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.xunmeng.merchant" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.lalamove.huolala.driver" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.sankuai.meituan.merchant" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.google.android.talk" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.sankuai.meituan.dispatch.crowdsource" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.microsoft.windowsintune.companyportal" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.microsoft.teams" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.xiwei.logistics" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="me.ele.crowdsource" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.wlqq" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="com.huaxiaozhu.driver" category="001" />
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
     <whitePkg name="cn.caocaokeji.dcdriver" category="001" />
     <!--blacklist app of export region is controlled according to 3rd app of domestic region-->
     <blackHansPkg enable="false" pkg="" />
@@ -818,7 +1308,7 @@
     <prevent scene="110" pkg="com.xunmeng.pinduoduo" mask="1111111110" version="" code="A.10"/>
     <prevent scene="110" pkg="com.taobao.taobao" mask="1111111110" version="" code="A.10"/>
     <prevent scene="110" pkg="com.teamtalk.im" mask="0111111110"/>
-    <prevent scene="110" pkg="com.tencent.mobileqq" mask="0100000000"/>
+    <prevent scene="110" pkg="com.tencent.mobileqq" mask="1111111110"/>
     <prevent scene="110" pkg="com.tencent.mm" mask="0100000000"/>
 
     <!--scene={lcdon, lcdoff, deepsleep, airplan} pkg={name} mask={binary(alarm, sync, job, broadcast, provider, binds, starts, activity), all} -->
@@ -901,6 +1391,15 @@
         <config enable="true"/>
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
         <whitePkg name=""/>
     </audioSilence>
     <audioAsyncBinder>
@@ -1115,6 +1614,15 @@
     <thermalMode enable="true" enterLevel="10" exitLevel="9" >
     <whitePkg name="com.google.android.gms" category="100"/>
     <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.google.android.gms" category="100"/>
+    <whitePkg name="com.google.android.gsf" category="100"/>
+    <whitePkg name="com.vflow.app" category="001"/>
         <!-- <whitePkg name="com.test.demo" />-->
     </thermalMode>
 
