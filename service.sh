@@ -19,9 +19,7 @@ if [ -f "$MODDIR/data/oplus/os/bpm/sys_elsa_config_list.xml" ]; then
     
     # 执行绑定挂载
     mount --bind "$MODDIR/data/oplus/os/bpm/sys_elsa_config_list.xml" "$TARGET_FILE"
-    
-    # 关键：挂载后立即锁死属性 (+i)，防止系统 BPM 服务在解锁时覆盖文件
-    chattr +i "$TARGET_FILE"
+
 fi
 
 # --- [新增] 3. 注入安卓原生 Doze (打盹) 白名单 ---
