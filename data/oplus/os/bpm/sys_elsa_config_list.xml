@@ -6,8 +6,8 @@
     <!-- OFreezer3.5 -->
     <module-version>OFreezer3.0</module-version>
 
-    <enableConfig hansEnable="true" gmsEnable="false" releaseStatistic="true" skipToast="true" heatGameCloseNet="false"
-                    dozeRestrictSwitch="false" audioByHook="true" navigationByHook="true" audioCheckEnable="true" proxyWakeLockEnable="false"
+    <enableConfig hansEnable="true" gmsEnable="true" releaseStatistic="true" skipToast="true" heatGameCloseNet="false"
+                    dozeRestrictSwitch="true" audioByHook="true" navigationByHook="true" audioCheckEnable="true" proxyWakeLockEnable="false"
                     cgp_v2="true" hansWatchDogEnable="true" cpnCheckByHook="true" restoreAlarm="true" uidGoneRemoveAlarm="true"
                     MStateTrimMemConfig = "true"/>
     <lcdOffConfig ffTotal="6" ffInterval="10000" interval="60000" deepSleepFreezeWhite="true" gameCloseNet="false" idleEnable="true"
@@ -25,7 +25,7 @@
     <traceConfig enable="true"/>
     <ApiTimeoutConfig apiEnable="true" upperTimeout="7200000" floorTimeout="600000"/>
     <hansWatchDogConfig defaultTimeout="40000"/>
-    <nightDeepDozeConfig enable="false" deltaMinutes="20" timeRestrictEnable="true" startMinutes="0" endMinutes="360" />
+    <nightDeepConfig enable="true" deltaMinutes="20" timeRestrictEnable="true" startMinutes="0" endMinutes="360" />
     <queryUsageStatsConfig queryIntervalTime="259200" messageDelayTime="3600" messageRepeateCount="5"/> <!--3days:259200-->
     <proxyDelayConfig delayTime="500" />
 
@@ -1194,8 +1194,8 @@
         <continuousTaskCfg maxDuration="3600000" protectTimeAfterExceed="10000" />
     </appQuotaConfig>
     <bigDataCfg>
-        <item name="dozeWhite" preVersion="true" comVersion="false" blackPkg="com.oplus.battery"/>
-        <item name="hansKeepAlive" preVersion="true" comVersion="false" blackPkg=""/>
+        <item name="dozeWhite" preVersion="true" comVersion="false" whitePkg="com.google.android.gms" blackPkg="com.oplus.battery"/>
+        <item name="hansKeepAlive" preVersion="true" comVersion="false" whitePkg="com.google.android.gms" blackPkg=""/>
     </bigDataCfg>
     <dependencyCheck packageName="com.oplus.wallpapers"/>
     <dependencyCheck packageName="com.nearme.instant.platform"/>
