@@ -20,7 +20,7 @@ jobs:
         run: |
           ver=$(grep 'version=' module.prop | cut -d= -f2)
           filename="coloros_gms_fix_$ver.zip"
-          zip -r "$filename" ./* -x ".git/*" ".github/*" "README.md" ".gitignore" "LICENSE"
+          zip -r "$filename" ./* -x ".git/*" ".github/*" "README.md" ".gitignore" "LICENSE" "biuld.sh"
           echo "zip_name=$filename" >> $GITHUB_OUTPUT
           echo "tag=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_OUTPUT
 
