@@ -1,6 +1,6 @@
 id=coloros_gms_extreme_fix
 name=ColorOS GMS 推送深度修复 [集成 Firewall Fixer]
-version=v2.2
+version=v2.3
 versionCode=3
-author=Gemini_Assistant & CHIZI-0618
+author=Bai & CHIZI-0618
 description=深度解除 ELSA/OFreezer 拦截，并清理 ColorOS 联网防火墙规则。
