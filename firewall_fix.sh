@@ -1,30 +1,27 @@
 #!/system/bin/sh
 
-until [ $(getprop sys.boot_completed) -eq 1 ]; do
-    sleep 2
-done
+MODDIR=${0%/*}
+export MODDIR
+. "$MODDIR/common.sh"
 
-# 不做检测函数，等待一分钟，等待系统完整加载默认 iptables 规则
+ensure_runtime_dirs
+load_config
+[ "$FIREWALL_FIX" = "1" ] || exit 0
+
+# 等待 ColorOS 完成联网防火墙规则初始化。
 sleep 60
+: > "$FIREWALL_LOG"
 
-SCRIPT_DIR=${0%/*}
-
-. ${SCRIPT_DIR}/common.sh
-
-if [ -f "$LOGFILE" ]; then
-    cp -f "$LOGFILE" "$BAKLOG"
-    echo "[$(date)] 日志已备份，开始新日志记录" > "$LOGFILE"
+if ! resolve_google_uids; then
+    log_to "$FIREWALL_LOG" "未解析到 GMS/GSF/Play Store UID；仅处理带明确包名标记的规则"
 else
-    echo "[$(date)] 日志开始记录" > "$LOGFILE"
+    log_to "$FIREWALL_LOG" "目标 UID：$GOOGLE_UIDS"
 fi
 
 chains="fw_INPUT fw_OUTPUT fw_OUTPUT_oplus_dns zte_fw_gms"
-
-echo "[$(date)] 开始清理 IPv4 和 IPv6 中的 REJECT 规则..." >> "$LOGFILE"
-
 for chain in $chains; do
-    remove_block_rules "filter" "$chain" "ipv4"
-    remove_block_rules "filter" "$chain" "ipv6"
+    remove_google_block_rules filter "$chain" ipv4
+    remove_google_block_rules filter "$chain" ipv6
 done
 
-echo "[$(date)] 清理完成" >> "$LOGFILE"
+log_to "$FIREWALL_LOG" "精准防火墙检查完成；未关联 Google 的 DROP/REJECT 保持不变"

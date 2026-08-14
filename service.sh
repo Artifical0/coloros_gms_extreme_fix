@@ -1,33 +1,31 @@
 #!/system/bin/sh
-# 定义模块路径
-MODDIR=${0%/*}
-TARGET_FILE="/data/oplus/os/bpm/sys_elsa_config_list.xml"
 
-# 等待系统完全启动
+MODDIR=${0%/*}
+export MODDIR
+. "$MODDIR/common.sh"
+
+ensure_runtime_dirs
+: > "$SERVICE_LOG"
+load_config
+
 while [ "$(getprop sys.boot_completed)" != "1" ]; do
     sleep 5
 done
 
-# --- [新增] 1. 解锁系统框架对 GMS 的隐藏限制 ---
-# 这个命令能清空 HansPackageManager 中的 GMS 限制名单
-settings put secure google_restric_info 0
+log_to "$SERVICE_LOG" "启动 v3.0：gms_fix=$GMS_FIX firewall_fix=$FIREWALL_FIX wechat_optimize=$WECHAT_OPTIMIZE"
 
-# --- [优化] 2. 针对 BPM 目录的强制锁定挂载 ---
-if [ -f "$MODDIR/data/oplus/os/bpm/sys_elsa_config_list.xml" ]; then
-    # 挂载前先解除可能存在的 i 属性锁定
-    chattr -i "$TARGET_FILE"
-    
-    # 执行绑定挂载
-    mount --bind "$MODDIR/data/oplus/os/bpm/sys_elsa_config_list.xml" "$TARGET_FILE"
-
+if [ "$GMS_FIX" = "1" ]; then
+    capture_runtime_state
+    settings put secure google_restric_info 0
+    dumpsys deviceidle whitelist +com.google.android.gms > /dev/null 2>&1
+    dumpsys deviceidle whitelist +com.google.android.gsf > /dev/null 2>&1
+    apply_elsa_patch
+else
+    log_to "$SERVICE_LOG" "GMS 修复已由 config.conf 禁用"
 fi
 
-# --- [新增] 3. 注入安卓原生 Doze (打盹) 白名单 ---
-# 确保 GMS 拥有原生层面的不优化权限
-dumpsys deviceidle whitelist +com.google.android.gms
-dumpsys deviceidle whitelist +com.google.android.gsf
-
-# --- [保留] 4. 执行原有的防火墙修复脚本 ---
-if [ -f "$MODDIR/firewall_fix.sh" ]; then
+if [ "$FIREWALL_FIX" = "1" ]; then
     sh "$MODDIR/firewall_fix.sh" &
+else
+    log_to "$SERVICE_LOG" "防火墙修复已由 config.conf 禁用"
 fi
