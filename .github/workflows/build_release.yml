@@ -1,13 +1,16 @@
-name: 自动构建刷机包
+name: 验证并构建模块
 
 on:
   push:
-    branches: [ main ]
-    paths-ignore: [ 'README.md', '.github/**' ]
+    branches: [main]
+  pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  build:
+  verify-and-build:
     runs-on: ubuntu-latest
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -15,21 +18,31 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
 
+      - name: 验证脚本与动态补丁
+        run: bash tests/verify_module.sh
+
       - name: 打包模块
         id: pack
         run: |
-          ver=$(grep 'version=' module.prop | cut -d= -f2)
-          filename="coloros_gms_fix_$ver.zip"
-          zip -r "$filename" ./* -x ".git/*" ".github/*" "README.md" ".gitignore" "LICENSE" "build.sh"
-          echo "zip_name=$filename" >> $GITHUB_OUTPUT
-          echo "tag=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_OUTPUT
+          chmod +x build.sh
+          ./build.sh
+          file=$(find . -maxdepth 1 -name 'coloros_gms_fix_*.zip' -printf '%f\n' | head -n 1)
+          echo "zip_name=$file" >> "$GITHUB_OUTPUT"
+          echo "tag=$(date +'%Y.%m.%d-%H%M')" >> "$GITHUB_OUTPUT"
+
+      - name: 保存构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: coloros-gms-fix
+          path: ${{ steps.pack.outputs.zip_name }}
 
       - name: 创建 Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.pack.outputs.tag }}
           name: Build ${{ steps.pack.outputs.tag }}
-          files: coloros_gms_fix_*.zip
-          body: "基于最新同步代码自动生成的 Magisk 模块。"
+          files: ${{ steps.pack.outputs.zip_name }}
+          body: "ColorOS GMS 推送平衡修复自动构建。"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

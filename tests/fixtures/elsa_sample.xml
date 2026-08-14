@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<filter-conf>
+    <version>rom-version-must-stay</version>
+    <whitePkg name="com.example.keep" category="001"/>
+    <whitePkg name="com.google.android.gms" category="001"/>
+    <prevent scene="110" pkg="com.google.android.gms" mask="1111111110"/>
+    <prevent scene="110" pkg="com.google.android.gsf" mask="1111111110"/>
+    <prevent scene="110" pkg="com.tencent.mm" mask="1111111110"/>
+    <cpuCtlWhiteList pkg="com.tencent.mm" />
+    <bigDataCfg>
+        <item name="dozeWhite" preVersion="true" comVersion="false" whitePkg="com.example.keep" blackPkg="com.example.black"/>
+        <item name="hansKeepAlive" preVersion="true" comVersion="false" whitePkg="" blackPkg=""/>
+    </bigDataCfg>
+</filter-conf>

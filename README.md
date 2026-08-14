@@ -1,33 +1,56 @@
-ColorOS GMS Extreme Fix (终极修复方案)
-针对 ColorOS 16 深度定制的 GMS 推送修复模块。
+# ColorOS GMS 推送平衡修复
 
-🌟 模块简介
-ColorOS 的后台管理系统（ELSA/OFreezer）对 GMS 极其不友好，即便放开自启动也难逃被冷冻或断连的命运。本模块通过直接修改系统核心策略文件 sys_elsa_config_list.xml，配合系统框架参数注入，实现 GMS 推送的秒级触达。
-合并 Google拦截规则清理 https://github.com/CHIZI-0618/ColorOS-Google-Firewall-Fixer
-🚀 核心功能
-GMS 深度豁免：将 Google 服务框架（GMS/GSF）移出系统清理黑名单，并注入 bigDataCfg 的最高优先级白名单。
+面向 OnePlus 15 / ColorOS 16 的 Magisk、KernelSU、APatch 模块。目标是让 Google Play services 维持 FCM 长连接，同时让微信能够正常进入系统冻结，减少无意义的后台 CPU 消耗。
 
-ELSA/OFreezer 破解：彻底放开 GMS 的后台掩码（Mask）限制，禁用针对 Google 服务的打盹模式（Doze）拦截。
+## v3.0 的变化
 
-框架开关解锁：自动注入 google_restric_info 0 参数，关闭系统框架对 GMS 持续持有 WakeLock 的限制。
+- 不再携带和覆盖整份 `sys_elsa_config_list.xml`。
+- 每次开机复制当前 ROM 的 ELSA 文件，只修改 GMS、GSF 和微信的目标字段；格式不兼容或校验失败时拒绝挂载。
+- GMS/GSF 保留 Android Doze 白名单和 ColorOS ELSA 白名单，`prevent mask` 设置为 `0000000000`。
+- 微信不加入 Doze 白名单，移除 `cpuCtlWhiteList`，将 `prevent mask` 调整为平衡值 `0100000000`，保留 Alarm、网络恢复广播等 ROM 原有配置。
+- 防火墙修复只删除能匹配 GMS、GSF、Play Store UID 或明确包名的 DROP/REJECT 规则；其他系统防火墙规则完全保留。
 
-社交软件调优（可选压制）：精准移除微信、QQ 的 CPU 调度白名单，强制其在后台进入缓存状态(无效)。
+## 配置
 
-🛠 技术原理
-挂载重定向：通过 KernelSU/Magisk 将修改后的 sys_elsa_config_list.xml 绑定挂载到 /data/oplus/os/bpm/。
+刷入前或刷入后编辑模块目录中的 `config.conf`：
 
+```ini
+gms_fix=1
+firewall_fix=1
+wechat_optimize=1
+```
 
-📥 安装说明
-确保设备已获取 KernelSU 或 Magisk 权限。
+修改后重启。若只需要 GMS 推送、不想修改微信策略，将 `wechat_optimize=0`。
 
-下载发布包 .zip 文件。
+## 安装
 
-在管理器中刷入并重启。
+1. 确保设备已安装 Magisk、KernelSU 或 APatch。
+2. 在模块管理器中刷入 Release ZIP。
+3. 重启设备。
+4. 不要在系统设置或第三方工具中对目标应用执行“强行停止/冻结”。Android 的 stopped 状态无法由 FCM 绕过。
 
-重启后建议在终端运行 settings get secure google_restric_info 确认是否为 0。
+## 验证
 
-⚠️ 免责声明
-本模块涉及对系统底层功耗策略的深度修改，虽然在 OnePlus 15 上测试通过，但不同机型可能存在差异。刷入前请务必做好数据备份，如遇系统卡顿或掉电异常，请及时卸载模块。
+```sh
+su -c 'settings get secure google_restric_info'
+su -c 'dumpsys deviceidle whitelist | grep -E "google.android.gms|google.android.gsf"'
+su -c 'cat /data/adb/modules/coloros_gms_extreme_fix/logs/service.log'
+su -c 'cat /data/adb/modules/coloros_gms_extreme_fix/logs/firewall.log'
+```
 
+`google_restric_info` 应为 `0`。`service.log` 应显示动态 ELSA 补丁挂载成功；若 OTA 改变了 XML 结构，模块会记录失败并跳过挂载，不会用旧配置覆盖新 ROM。
 
+锁屏 30–60 分钟分别测试 Nekogram、微信等 FCM 消息。微信的验收目标是“消息可及时唤醒，处理后能再次冻结”，不是让微信永久常驻。
 
+## 限制与回退
+
+- 模块不能让已经被 force-stop 的应用接收 FCM。
+- 微信 APK 是否实际使用 FCM 由应用版本和服务器策略决定，本模块只保证系统侧通路。
+- ColorOS OTA 后请检查 `service.log`。出现“不受支持”时，停用模块并提交新 ROM 的 ELSA 片段。
+- 卸载脚本会恢复 v3 首次运行前记录的 `google_restric_info` 和 Doze 白名单状态；重启后防火墙与挂载状态也会由系统恢复。ROM 原始 XML 从未被改写。
+
+防火墙修复思路来源：[CHIZI-0618/ColorOS-Google-Firewall-Fixer](https://github.com/CHIZI-0618/ColorOS-Google-Firewall-Fixer)。
+
+## 免责声明
+
+本模块会在 root 环境下调整系统运行时策略。请自行备份并承担刷机、耗电、兼容性风险。

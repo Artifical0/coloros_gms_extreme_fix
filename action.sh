@@ -1,16 +1,17 @@
 #!/system/bin/sh
 
-SCRIPT_DIR=${0%/*}
+MODDIR=${0%/*}
+export MODDIR
+. "$MODDIR/common.sh"
 
-. ${SCRIPT_DIR}/common.sh
-
-chains="fw_INPUT fw_OUTPUT fw_OUTPUT_oplus_dns zte_fw_gms"
-
-echo "[$(date)] 开始手动清理 IPv4 和 IPv6 中的 REJECT 规则..." >> "$LOGFILE"
-
-for chain in $chains; do
-    remove_block_rules "filter" "$chain" "ipv4"
-    remove_block_rules "filter" "$chain" "ipv6"
-done
-
-echo "[$(date)] 手动清理完成" >> "$LOGFILE"
+load_config
+if [ "$FIREWALL_FIX" = "1" ]; then
+    # 手动动作不再等待 60 秒。
+    resolve_google_uids
+    chains="fw_INPUT fw_OUTPUT fw_OUTPUT_oplus_dns zte_fw_gms"
+    for chain in $chains; do
+        remove_google_block_rules filter "$chain" ipv4
+        remove_google_block_rules filter "$chain" ipv6
+    done
+    log_to "$FIREWALL_LOG" "手动精准防火墙检查完成"
+fi

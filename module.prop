@@ -1,6 +1,6 @@
 id=coloros_gms_extreme_fix
-name=ColorOS GMS 推送深度修复 [集成 Firewall Fixer]
-version=v2.3
-versionCode=3
+name=ColorOS GMS 推送平衡修复
+version=v3.0
+versionCode=300
 author=Bai & CHIZI-0618
-description=深度解除 ELSA/OFreezer 拦截，并清理 ColorOS 联网防火墙规则。
+description=动态修补 ELSA/OFreezer，保持 GMS/FCM 在线，并以平衡策略限制微信后台耗电。
