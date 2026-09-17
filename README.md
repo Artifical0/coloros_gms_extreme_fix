@@ -1,5 +1,15 @@
 # ColorOS GMS 推送平衡修复
 
+> [!WARNING]
+> **本项目已停止维护，不再更新，也不再处理 Issue。**
+>
+> 请改用后续项目 **[fcmfix-oneplus15-coloros16](https://github.com/Artifical0/fcmfix-oneplus15-coloros16)**（需要 Root + LSPosed），它针对一加 15 / ColorOS 16 的 FCM 推送问题持续维护：
+>
+> - 项目主页：https://github.com/Artifical0/fcmfix-oneplus15-coloros16
+> - 下载最新版本：https://github.com/Artifical0/fcmfix-oneplus15-coloros16/releases/latest
+>
+> 迁移建议：先在模块管理器中停用并卸载本模块、重启，再按新项目 README 安装，避免两者同时修改系统推送策略。
+
 面向 OnePlus 15 / ColorOS 16 的 Magisk、KernelSU、APatch 模块。目标是让 Google Play services 维持 FCM 长连接，同时让微信能够正常进入系统冻结，减少无意义的后台 CPU 消耗。
 
 ## v3.0 的变化
